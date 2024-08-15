@@ -8,7 +8,7 @@
 using namespace std;
 
 class Jogador {
-protected:   //permite que as classes filhas tenham acesso
+protected:   
     string apelido;
     string nome;
     map<string, tuple<int, int, int>> estatisticas; // NomedoJogo (Vitórias, Derrotas, Empates)
@@ -20,9 +20,9 @@ public:
     string getNome() const;
     tuple<int, int, int> getEstatisticas(const string& jogo) const;
 
-    virtual void adicionarVitoria(const string& jogo);
-    virtual void adicionarDerrota(const string& jogo);
-    virtual void adicionarEmpate(const string& jogo);
+    void adicionarVitoria(const string& jogo);
+    void adicionarDerrota(const string& jogo);
+    void adicionarEmpate(const string& jogo);
 
     void salvar(ofstream& arquivo) const;
     void carregar(ifstream& arquivo);

@@ -1,6 +1,6 @@
 #include "CadastroJogadores.hpp"
-//#include "resultados.hpp"
-//#include "Jogo.h"
+#include "Resultados.hpp"
+#include "Jogo.h"
 
 
 #include <iostream>
@@ -13,8 +13,8 @@ void ComandosMain() {
     cout << "CJ <apelido> <nome>    - Cadastrar um novo jogador" << endl;
     cout << "RJ <apelido>           - Remover um jogador" << endl;
     cout << "LJ <A/N>               - Listar jogadores por apelido (A) ou nome (N)" << endl;
-    //cout << "Lig4                   - Jogar Ligue 4" << endl;
-    //cout << "REVERSI <jogador1> <jogador2> - Jogar Reversi" << endl;
+    cout << "Lig4                   - Jogar Ligue 4" << endl;
+    cout << "REVERSI <jogador1> <jogador2> - Jogar Reversi" << endl;
     cout << "FS                     - Fechar o programa\n" << endl;
 }
 
@@ -61,7 +61,7 @@ int main() {
             } else {
                 cout << "Ordene por 'A' (apelido) ou 'N' (nome)" << endl;
             }
-        } /*else if (cmd == "LIG4") { 
+        } else if (cmd == "LIG4") { 
            
             JogarLigue4(cadastro);
 
@@ -76,10 +76,10 @@ int main() {
                 } else {
                     cout << "ERRO: Jogador << " << jogador2 << " >> inexistente" << endl;
                 }
-            }*else {
+            }else {
                 cout << "ERRO: Jogador << " << jogador1 << " >> inexistente" << endl;
             }
-        }*/ else if (cmd == "FS") { 
+        } else if (cmd == "FS") { 
             break;
         } else {
             cout << "ERRO: comando desconhecido" << endl;
