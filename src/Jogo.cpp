@@ -4,7 +4,7 @@
 #include "JogadorIA.h"
 
 #include "CadastroJogadores.hpp"
-#include "resultados.hpp"
+#include "Resultados.hpp"
 
 
 //função principal do jogo
