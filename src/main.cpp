@@ -1,6 +1,7 @@
 #include "CadastroJogadores.hpp"
 #include "Resultados.hpp"
-#include "Jogo.h"
+#include "Jogo.h" //lig4
+//#include "Table.hpp" //reversi
 
 
 #include <iostream>
@@ -14,7 +15,7 @@ void ComandosMain() {
     cout << "RJ <apelido>           - Remover um jogador" << endl;
     cout << "LJ <A/N>               - Listar jogadores por apelido (A) ou nome (N)" << endl;
     cout << "Lig4                   - Jogar Ligue 4" << endl;
-    cout << "REVERSI <jogador1> <jogador2> - Jogar Reversi" << endl;
+    cout << "REVERSI                - Jogar Reversi" << endl;
     cout << "FS                     - Fechar o programa\n" << endl;
 }
 
@@ -67,19 +68,7 @@ int main() {
             JogarLigue4(cadastro);
 
         } else if (cmd == "REVERSI") {
-            string jogador1, jogador2;
-            iss >> jogador1;
-            if (cadastro.jogadorExiste(jogador1)) {
-                iss >> jogador2;
-                if (cadastro.jogadorExiste(jogador2)) {
-                    cout << "EMPATE SIMULADO" << endl;
-                    ResultadoHumanoHumano(*cadastro.obterJogador(jogador1), *cadastro.obterJogador(jogador2), "REVERSI", 1);
-                } else {
-                    cout << "ERRO: Jogador << " << jogador2 << " >> inexistente" << endl;
-                }
-            }else {
-                cout << "ERRO: Jogador << " << jogador1 << " >> inexistente" << endl;
-            }
+            //JogarReversi(cadastro);
         } else if (cmd == "FS") { 
             break;
         } else {
