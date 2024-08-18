@@ -5,6 +5,5 @@
 #include <string>
 
 void ResultadoJogador(Jogador& jogador1, const std::string& jogo, int resultado);
-void ResultadoHumanoHumano(Jogador& jogador1, Jogador& jogador2, const std::string& jogo, int resultado);
 
 #endif
