@@ -6,7 +6,6 @@ Este projeto utiliza a biblioteca gráfica **SFML** (Simple and Fast Multimedia 
 
 - **SFML 2.6.1**: Certifique-se de que você possui a versão 2.6.1 da SFML instalada. Outras versões podem não ser compatíveis com o código deste projeto.
 - **Compilador C++**: Um compilador compatível com C++11 ou superior.
-- **CMake** (opcional): Se estiver utilizando CMake para configurar a build.
 
 ## Instruções de Configuração
 
@@ -14,10 +13,7 @@ Este projeto utiliza a biblioteca gráfica **SFML** (Simple and Fast Multimedia 
    - Acesse o [site oficial da SFML](https://www.sfml-dev.org/download.php) e baixe a versão 2.6.1 para o seu sistema operacional.
    - Extraia os arquivos em um local de sua preferência.
 
-2. **Configuração do Projeto:**
-   - Verifique se o caminho para a SFML está corretamente configurado no seu projeto (por exemplo, no seu `Makefile`, `CMakeLists.txt`, ou nas configurações da sua IDE).
-
-3. **Compilação e Execução:**
+2. **Compilação e Execução:**
    - Compile o projeto utilizando o Makefile.
    - As bibliotecas dinâmicas da SFML (como `sfml-graphics`, `sfml-window`, `sfml-system`, etc.) estão acessíveis durante a execução do programa, pois estão arquivadas no diretório `bin/`.
 
@@ -35,4 +31,4 @@ O repositório está organizado da seguinte forma:
 ## Observações
 
 - Para garantir que o programa funcione corretamente em diferentes máquinas, é crucial utilizar a versão 2.6.1 da SFML. Outras versões podem causar comportamentos inesperados ou falhas durante a execução.
-- Se estiver utilizando uma versão diferente da SFML, recomendamos atualizar para a versão 2.6.1 antes de prosseguir.
+- Se estiver utilizando uma versão diferente da SFML, é recomendado atualizar para a versão 2.6.1 antes de prosseguir, a fim de evitar erros inesperados.
