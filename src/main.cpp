@@ -19,6 +19,7 @@ void ComandosMain() {
 }
 
 int main() {
+    
     CadastroJogadores cadastro; //inicia o cadastro de jogadores
     string comando;
     ComandosMain();
