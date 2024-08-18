@@ -1,7 +1,7 @@
 #include "CadastroJogadores.hpp"
 #include "Resultados.hpp"
 #include "Jogo.h" //lig4
-//#include "Table.hpp" //reversi
+#include "Table.hpp" //reversi
 
 
 #include <iostream>
