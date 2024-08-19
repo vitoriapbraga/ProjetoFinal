@@ -105,6 +105,7 @@ void Jogo::jogar(CadastroJogadores& cadastro) {
             //verifica se não é o jogador IA
             if(cadastro.jogadorExiste(jogadorAtual->getApelido()))
             ResultadoJogador(*cadastro.obterJogador(jogadorAtual->getApelido()), "LIG4", 0);
+            
             jogoEmAndamento = false;
 
         } else if (tabuleiro.estaCheio()) {
@@ -112,13 +113,12 @@ void Jogo::jogar(CadastroJogadores& cadastro) {
             std::cout << "Empate! O tabuleiro está cheio.\n";
 
             if(cadastro.jogadorExiste(jogadorAtual->getApelido()))
-            ResultadoJogador(*cadastro.obterJogador(jogadorAtual->getApelido()), "LIG4", 0);
+            ResultadoJogador(*cadastro.obterJogador(jogadorAtual->getApelido()), "LIG4", 1);
 
-            //alterna o jogador para derrota
             jogadorAtual = (jogadorAtual == jogador1) ? jogador2 : jogador1;
 
             if(cadastro.jogadorExiste(jogadorAtual->getApelido()))
-            ResultadoJogador(*cadastro.obterJogador(jogadorAtual->getApelido()), "LIG4", 0);
+            ResultadoJogador(*cadastro.obterJogador(jogadorAtual->getApelido()), "LIG4", 1);
 
 
             jogoEmAndamento = false;

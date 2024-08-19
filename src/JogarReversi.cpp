@@ -211,10 +211,10 @@ void Table::game(CadastroJogadores& cadastro)
     // Imprime o resultado final
     if (blacks == whites) {
         if(cadastro.jogadorExiste(jogador1))
-        ResultadoJogador(*cadastro.obterJogador(jogador1), "REVERSI", 0);
+        ResultadoJogador(*cadastro.obterJogador(jogador1), "REVERSI", 1);
 
         if(cadastro.jogadorExiste(jogador2))
-        ResultadoJogador(*cadastro.obterJogador(jogador2), "REVERSI", 0);
+        ResultadoJogador(*cadastro.obterJogador(jogador2), "REVERSI", 1);
 
         cout << "EMPATE";
     } else {
