@@ -1,15 +1,66 @@
 CC = g++
 CFLAGS = -std=c++11 -I$(SFML_DIR)/include
-LDFLAGS = -L$(SFML_DIR)/lib -lsfml-system -lsfml-window -lsfml-graphics
-
+SFML_DIR = third-parties/SFML-2.6.1
+INCLUDE_DIR = include
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
-SFML_DIR = third-parties/SFML-2.6.1
-INCLUDE_DIR = include
+
+# Detectar o sistema operacional
+ifeq ($(OS),Windows_NT)
+    UNAME_S := Windows
+else
+    UNAME_S := $(shell uname -s)
+endif
+
+# Definir flags e bibliotecas específicas para Raylib
+ifeq ($(UNAME_S),Linux)
+    CFLAGS += -Ithirdy_party -Iinclude
+    LDFLAGS += -Llib/Linux -lraylib -lGL -lm -lpthread -ldl -lrt -lgcov
+endif
+
+ifeq ($(UNAME_S),Darwin)
+    CFLAGS += -Ithirdy_party -Iinclude
+    LDFLAGS += -Llib/macOS -lraylib -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL
+endif
+
+ifeq ($(UNAME_S),Windows)
+    CFLAGS += -Ithirdy_party -Iinclude
+    LDFLAGS += -Llib/Windows -lraylib -lopengl32 -lgdi32 -lwinmm
+endif
+
+# Objetos comuns a todos os sistemas operacionais
+OBJ_FILES = $(OBJ_DIR)/main.o $(OBJ_DIR)/CadastroJogadores.o $(OBJ_DIR)/Jogador.o \
+            $(OBJ_DIR)/JogadorHumanoLig4.o $(OBJ_DIR)/JogadorIA.o $(OBJ_DIR)/JogadorLig4.o \
+            $(OBJ_DIR)/Jogo.o $(OBJ_DIR)/Resultados.o $(OBJ_DIR)/Tabuleiro.o
+
+# Adicionar mancala.o apenas se for Linux ou macOS
+ifeq ($(UNAME_S),Linux)
+    OBJ_FILES += $(OBJ_DIR)/mancala.o
+endif
+
+ifeq ($(UNAME_S),Darwin)
+    OBJ_FILES += $(OBJ_DIR)/mancala.o
+endif
 
 all: $(BIN_DIR)/main
 
+# Compilar mancala apenas se for Linux ou macOS
+ifeq ($(UNAME_S),Linux)
+$(OBJ_DIR)/mancala.o: $(INCLUDE_DIR)/mancala.hpp $(SRC_DIR)/mancala.cpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/mancala.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/mancala.o
+endif
+
+ifeq ($(UNAME_S),Darwin)
+$(OBJ_DIR)/mancala.o: $(INCLUDE_DIR)/mancala.hpp $(SRC_DIR)/mancala.cpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/mancala.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/mancala.o
+endif
+
+# Compilação do main
+$(BIN_DIR)/main: $(OBJ_FILES) | $(BIN_DIR)
+	$(CC) $(CFLAGS) $(OBJ_FILES) -o $(BIN_DIR)/main $(LDFLAGS)
+
+# Outras regras de compilação
 $(OBJ_DIR)/CadastroJogadores.o: $(INCLUDE_DIR)/CadastroJogadores.hpp $(SRC_DIR)/CadastroJogadores.cpp $(INCLUDE_DIR)/Jogador.hpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/CadastroJogadores.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/CadastroJogadores.o
 
@@ -37,10 +88,18 @@ $(OBJ_DIR)/Tabuleiro.o: $(INCLUDE_DIR)/Tabuleiro.h $(SRC_DIR)/Tabuleiro.cpp | $(
 $(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INCLUDE_DIR)/CadastroJogadores.hpp $(INCLUDE_DIR)/Jogador.hpp  $(INCLUDE_DIR)/JogadorHumanoLig4.h $(INCLUDE_DIR)/JogadorIA.h $(INCLUDE_DIR)/JogadorLig4.h $(INCLUDE_DIR)/Jogo.h $(INCLUDE_DIR)/Resultados.hpp $(INCLUDE_DIR)/Tabuleiro.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/main.o
 
-$(BIN_DIR)/main: $(OBJ_DIR)/main.o $(OBJ_DIR)/CadastroJogadores.o $(OBJ_DIR)/Jogador.o $(OBJ_DIR)/JogadorHumanoLig4.o $(OBJ_DIR)/JogadorIA.o $(OBJ_DIR)/JogadorLig4.o $(OBJ_DIR)/Jogo.o $(OBJ_DIR)/Resultados.o $(OBJ_DIR)/Tabuleiro.o | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(OBJ_DIR)/main.o $(OBJ_DIR)/CadastroJogadores.o $(OBJ_DIR)/Jogador.o $(OBJ_DIR)/JogadorHumanoLig4.o $(OBJ_DIR)/JogadorIA.o $(OBJ_DIR)/JogadorLig4.o $(OBJ_DIR)/Jogo.o $(OBJ_DIR)/Resultados.o $(OBJ_DIR)/Tabuleiro.o -o $(BIN_DIR)/main $(LDFLAGS)
+run:
+	./$(BIN_DIR)/main
 
 clean:
+ifeq ($(UNAME_S),Linux)
 	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/main
+endif
 
+ifeq ($(UNAME_S),Darwin)
+	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/main
+endif
 
+ifeq ($(UNAME_S),Windows)
+	del /Q $(OBJ_DIR)\*.o $(BIN_DIR)\main.exe
+endif

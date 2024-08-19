@@ -1,32 +1,37 @@
 #include "CadastroJogadores.hpp"
 #include "Resultados.hpp"
-#include "Jogo.h" //lig4
-#include "Table.hpp" //reversi
+#include "Jogo.h" // lig4
+#include "Table.hpp" // reversi
 
+#ifndef _WIN32
+#include "mancala.hpp" // Incluir apenas se não for Windows
+#endif
 
 #include <iostream>
 #include <sstream>
 #include <algorithm> // para utilizar transform
 
 using namespace std;
+
 void ComandosMain() {
     cout << "Comandos:" << endl;
     cout << "CJ <apelido> <nome>    - Cadastrar um novo jogador" << endl;
     cout << "RJ <apelido>           - Remover um jogador" << endl;
     cout << "LJ <A/N>               - Listar jogadores por apelido (A) ou nome (N)" << endl;
     cout << "Lig4                   - Jogar Ligue 4" << endl;
-    cout << "REVERSI                - Jogar Reversi" << endl;
+#ifndef _WIN32
+    cout << "MANCALA                - Jogar Mancala" << endl;
+#endif
+    cout << "REVERSI <jogador1> <jogador2> - Jogar Reversi" << endl;
     cout << "FS                     - Fechar o programa\n" << endl;
 }
 
 int main() {
-    
-    CadastroJogadores cadastro; //inicia o cadastro de jogadores
+    CadastroJogadores cadastro; // inicia o cadastro de jogadores
     string comando;
     ComandosMain();
 
     while (true) {
-        
         getline(cin, comando);
         if (comando.empty()) {
             continue;
@@ -42,7 +47,6 @@ int main() {
             iss >> apelido >> nome;
             if (apelido.empty()) {
                 cout << "ERRO: dados incorretos" << endl;
-                
             } else {
                 cadastro.cadastrarJogador(apelido, nome);
             }
@@ -64,10 +68,15 @@ int main() {
                 cout << "Ordene por 'A' (apelido) ou 'N' (nome)" << endl;
             }
         } else if (cmd == "LIG4") { 
-           
             JogarLigue4(cadastro);
-
-        } else if (cmd == "REVERSI") {
+        }
+#ifndef _WIN32
+        else if (cmd == "MANCALA") {
+            Mancala mancala;
+            mancala.run(cadastro);
+        }
+#endif
+        else if (cmd == "REVERSI") {
             //JogarReversi(cadastro);
         } else if (cmd == "FS") { 
             break;

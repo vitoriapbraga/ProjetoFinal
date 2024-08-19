@@ -28,6 +28,10 @@ O repositório está organizado da seguinte forma:
 - `tests/` : Código relacionado aos testes do projeto.
 - `third-parties/` : Bibliotecas de terceiros (incluindo SFML).
 
+## Mancala
+As regras do jogo estão no PDF, ou então podem ser acessadas no site: https://brainking.com/pt/GameRules?tp=103
+
+
 ## Observações
 
 - Para garantir que o programa funcione corretamente em diferentes máquinas, é crucial utilizar a versão 2.6.1 da SFML. Outras versões podem causar comportamentos inesperados ou falhas durante a execução.
