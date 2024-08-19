@@ -15,13 +15,13 @@ int JogarLigue4(CadastroJogadores& cadastro) {
     std::cout << "1: Jogador 1 vs Jogador 2\n";
     std::cout << "2: Jogador vs IA\n\n";
     
-    int escolha;
+        char escolha;
     std::cin >> escolha;
 
     JogadorLig4* jogador1;
     JogadorLig4* jogador2;
 
-    if (escolha == 1) {
+    if (escolha == '1') {
         std::string nome1, nome2;
         std::cout << "Digite o nome do Jogador 1: ";
         std::cin >> nome1;
@@ -42,7 +42,7 @@ int JogarLigue4(CadastroJogadores& cadastro) {
         }
 
 
-    } else if (escolha == 2) {
+    } else if (escolha == '2') {
         std::string nome;
         std::cout << "Digite seu nome: ";
         std::cin >> nome;
@@ -56,8 +56,8 @@ int JogarLigue4(CadastroJogadores& cadastro) {
             return 1;
         }
     } else {
-        std::cerr << "Escolha inválida.\n";
-        return 1;
+        std::cerr << "Escolha invalida.\n";
+        return 0;
     }
 
     Jogo jogo(jogador1, jogador2);
