@@ -38,9 +38,9 @@ $(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INCLUDE_DIR)/CadastroJogadores.hpp $(IN
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/main.o
 
 $(BIN_DIR)/main: $(OBJ_DIR)/main.o $(OBJ_DIR)/CadastroJogadores.o $(OBJ_DIR)/Jogador.o $(OBJ_DIR)/JogadorHumanoLig4.o $(OBJ_DIR)/JogadorIA.o $(OBJ_DIR)/JogadorLig4.o $(OBJ_DIR)/Jogo.o $(OBJ_DIR)/Resultados.o $(OBJ_DIR)/Tabuleiro.o | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(OBJ_DIR)/main.o -o $(BIN_DIR)/main $(LDFLAGS)
+	$(CC) $(CFLAGS) $(OBJ_DIR)/main.o $(OBJ_DIR)/CadastroJogadores.o $(OBJ_DIR)/Jogador.o $(OBJ_DIR)/JogadorHumanoLig4.o $(OBJ_DIR)/JogadorIA.o $(OBJ_DIR)/JogadorLig4.o $(OBJ_DIR)/Jogo.o $(OBJ_DIR)/Resultados.o $(OBJ_DIR)/Tabuleiro.o -o $(BIN_DIR)/main $(LDFLAGS)
 
 clean:
 	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/main
 
-.PHONY: all clean
+
