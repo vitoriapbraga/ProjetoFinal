@@ -20,8 +20,7 @@ int JogarReversi(CadastroJogadores& cadastro)
  Permite ao usuário configurar a mesa
  
  */
-int Table::settings(CadastroJogadores& cadastro)
-{
+int Table::settings(CadastroJogadores& cadastro) {
     // saudando os usuários
     std::cout << "Bem-vindo ao Jogo Othello :" << endl
          << endl
@@ -128,6 +127,8 @@ int Table::settings(CadastroJogadores& cadastro)
         setGuidance(true);
     else
         setGuidance(false);
+
+    return 0;
 }
 
 /**

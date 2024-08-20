@@ -106,8 +106,9 @@ bool CadastroJogadores::removerJogador(const string& apelido) {
  * 
  * @param criterio Critério de ordenação: 'A' para ordenar por apelido, 'N' para ordenar por nome.
  */
-void CadastroJogadores::listarJogadores(char criterio) const {
+stringstream CadastroJogadores::listarJogadores(char criterio) const {
     vector<Jogador> VetorJogadores = jogadores;
+    stringstream listaDeJogadores;
     if (criterio == 'A') {
         sort(VetorJogadores.begin(), VetorJogadores.end(), [](const Jogador& a, const Jogador& b) {
             return a.getApelido() < b.getApelido();
@@ -119,14 +120,15 @@ void CadastroJogadores::listarJogadores(char criterio) const {
     }
 
     for (const auto& jogador : VetorJogadores) {
-        cout << "Apelido: " << jogador.getApelido() << "\tNome: " << jogador.getNome() << "\n" << endl;
+        listaDeJogadores << "Apelido: " << jogador.getApelido() << "\tNome: " << jogador.getNome() << "\n" << endl;
 
         auto REVERSI = jogador.getEstatisticas("REVERSI");
         auto LIG4 = jogador.getEstatisticas("LIG4");
         
-        cout << "\t  LIG4  - V: " << get<0>(LIG4) << " D: " << get<1>(LIG4) << " E: " << get<2>(LIG4) << "\n" << endl;
-        cout << "\tREVERSI - V: " << get<0>(REVERSI) << " D: " << get<1>(REVERSI) << " E: " << get<2>(REVERSI) << "\n" << endl;
+        listaDeJogadores << "\t  LIG4  - V: " << get<0>(LIG4) << " D: " << get<1>(LIG4) << " E: " << get<2>(LIG4) << "\n" << endl;
+        listaDeJogadores << "\tREVERSI - V: " << get<0>(REVERSI) << " D: " << get<1>(REVERSI) << " E: " << get<2>(REVERSI) << "\n" << endl;
     }
+    return listaDeJogadores;
 }
 
 /**

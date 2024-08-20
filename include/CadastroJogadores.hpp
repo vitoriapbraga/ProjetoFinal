@@ -4,6 +4,7 @@
 #include "Jogador.hpp"
 #include <vector>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ public:
 
     bool cadastrarJogador(const string& apelido, const string& nome);
     bool removerJogador(const string& apelido);
-    void listarJogadores(char criterio) const;
+    stringstream listarJogadores(char criterio) const;
     bool jogadorExiste(const string& apelido) const;
     Jogador* obterJogador(const string& apelido); 
 };

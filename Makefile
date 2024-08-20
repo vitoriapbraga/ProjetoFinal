@@ -32,7 +32,10 @@ endif
 # Objetos comuns a todos os sistemas operacionais
 OBJ_FILES = $(OBJ_DIR)/main.o $(OBJ_DIR)/CadastroJogadores.o $(OBJ_DIR)/Jogador.o \
             $(OBJ_DIR)/JogadorHumanoLig4.o $(OBJ_DIR)/JogadorIA.o $(OBJ_DIR)/JogadorLig4.o \
-            $(OBJ_DIR)/Jogo.o $(OBJ_DIR)/Resultados.o $(OBJ_DIR)/Tabuleiro.o
+            $(OBJ_DIR)/Jogo.o $(OBJ_DIR)/Resultados.o $(OBJ_DIR)/Tabuleiro.o $(OBJ_DIR)/MenuInicial.o \
+            $(OBJ_DIR)/MenuJogadores.o $(OBJ_DIR)/MenuJogos.o $(OBJ_DIR)/Coor.o \
+             $(OBJ_DIR)/Table.o $(OBJ_DIR)/JogarReversi.o $(OBJ_DIR)/TableVoid.o \
+             $(OBJ_DIR)/TableBool.o
 
 # Adicionar mancala.o apenas se for Linux ou macOS
 ifeq ($(UNAME_S),Linux)
@@ -85,7 +88,31 @@ $(OBJ_DIR)/Resultados.o: $(INCLUDE_DIR)/Resultados.hpp $(SRC_DIR)/Resultados.cpp
 $(OBJ_DIR)/Tabuleiro.o: $(INCLUDE_DIR)/Tabuleiro.h $(SRC_DIR)/Tabuleiro.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/Tabuleiro.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/Tabuleiro.o
 
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INCLUDE_DIR)/CadastroJogadores.hpp $(INCLUDE_DIR)/Jogador.hpp  $(INCLUDE_DIR)/JogadorHumanoLig4.h $(INCLUDE_DIR)/JogadorIA.h $(INCLUDE_DIR)/JogadorLig4.h $(INCLUDE_DIR)/Jogo.h $(INCLUDE_DIR)/Resultados.hpp $(INCLUDE_DIR)/Tabuleiro.h | $(OBJ_DIR)
+$(OBJ_DIR)/MenuInicial.o: $(SRC_DIR)/MenuInicial.cpp $(INCLUDE_DIR)/MenuInicial.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/MenuInicial.cpp -o $(OBJ_DIR)/MenuInicial.o
+
+$(OBJ_DIR)/MenuJogadores.o: $(SRC_DIR)/MenuJogadores.cpp $(INCLUDE_DIR)/MenuJogadores.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/MenuJogadores.cpp -o $(OBJ_DIR)/MenuJogadores.o
+
+$(OBJ_DIR)/MenuJogos.o: $(SRC_DIR)/MenuJogos.cpp $(INCLUDE_DIR)/MenuJogos.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/MenuJogos.cpp -o $(OBJ_DIR)/MenuJogos.o
+
+$(OBJ_DIR)/Coor.o: $(SRC_DIR)/Coor.cpp $(INCLUDE_DIR)/Coor.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/Coor.cpp -o $(OBJ_DIR)/Coor.o
+
+$(OBJ_DIR)/JogarReversi.o: $(SRC_DIR)/JogarReversi.cpp $(INCLUDE_DIR)/Table.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/JogarReversi.cpp -o $(OBJ_DIR)/JogarReversi.o
+
+$(OBJ_DIR)/Table.o: $(SRC_DIR)/Table.cpp $(INCLUDE_DIR)/Table.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/Table.cpp -o $(OBJ_DIR)/Table.o
+
+$(OBJ_DIR)/TableBool.o: $(SRC_DIR)/TableBool.cpp $(INCLUDE_DIR)/Table.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/TableBool.cpp -o $(OBJ_DIR)/TableBool.o
+
+$(OBJ_DIR)/TableVoid.o: $(SRC_DIR)/TableVoid.cpp $(INCLUDE_DIR)/Table.hpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $(SRC_DIR)/TableVoid.cpp -o $(OBJ_DIR)/TableVoid.o
+
+$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INCLUDE_DIR)/Constantes.hpp $(INCLUDE_DIR)/settings.hpp $(INCLUDE_DIR)/Coor.hpp $(INCLUDE_DIR)/Table.hpp $(INCLUDE_DIR)/MenuInicial.hpp $(INCLUDE_DIR)/MenuJogadores.hpp $(INCLUDE_DIR)/MenuJogos.hpp $(INCLUDE_DIR)/CadastroJogadores.hpp $(INCLUDE_DIR)/Jogador.hpp  $(INCLUDE_DIR)/JogadorHumanoLig4.h $(INCLUDE_DIR)/JogadorIA.h $(INCLUDE_DIR)/JogadorLig4.h $(INCLUDE_DIR)/Jogo.h $(INCLUDE_DIR)/Resultados.hpp $(INCLUDE_DIR)/Tabuleiro.h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.cpp -I$(INCLUDE_DIR) -o $(OBJ_DIR)/main.o
 
 run:
