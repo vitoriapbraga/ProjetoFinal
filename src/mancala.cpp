@@ -48,12 +48,12 @@ void Mancala::_initialize() {
 }
 
 
-void Mancala::_run_loop() {
+void Mancala::_run_loop(CadastroJogadores& cadastro) {
     // Loop principal do jogo
  
      while(!WindowShouldClose()) {
         _process_input();
-        _update_game();
+        _update_game(cadastro);
         _draw_game();
     }
 }
@@ -113,10 +113,10 @@ void Mancala::_move_seeds_end() {
 }
 
 
-void Mancala::_update_game() {
+void Mancala::_update_game(CadastroJogadores& cadastro) {
     if (end_game() && !_stop) {
         _end_game = true;
-        get_winner();
+        get_winner(cadastro);
         _stop = true;
 
         return;
@@ -372,19 +372,30 @@ bool Mancala::end_game() {
     return sum1 == 0 || sum2 == 0;
 }
 
-void Mancala::get_winner() {
+void Mancala::get_winner(CadastroJogadores& cadastro) {
     static char buffer[256];  // Buffer to hold the text
 
     if (_game_state[MANCALA_0] == _game_state[MANCALA_1]) {
+        //Empate atribuído
+        ResultadoJogador(*cadastro.obterJogador(_jogador0->getApelido()), "MANCALA", 1);
+        ResultadoJogador(*cadastro.obterJogador(_jogador1->getApelido()), "MANCALA", 1);
         _winner = DRAW;
         _text = "Empate";
         _text_color = RAY_GRAY;
+
     } else if (_game_state[MANCALA_0] > _game_state[MANCALA_1]) {
+        //jogador 0 venceu e jogador 1 perdeu
+        ResultadoJogador(*cadastro.obterJogador(_jogador0->getApelido()), "MANCALA", 3);
+        ResultadoJogador(*cadastro.obterJogador(_jogador1->getApelido()), "MANCALA", 0);
         _winner = PLAYER_0;
         snprintf(buffer, sizeof(buffer), "%s venceu!", _jogador0->getNome().c_str());
         _text = buffer;
         _text_color = RAY_RED;
+
     } else {
+        //jogador 0 perdeu e jogador 1 venceu
+        ResultadoJogador(*cadastro.obterJogador(_jogador0->getApelido()), "MANCALA", 0);
+        ResultadoJogador(*cadastro.obterJogador(_jogador1->getApelido()), "MANCALA", 3);
         _winner = PLAYER_1;
         snprintf(buffer, sizeof(buffer), "%s venceu!", _jogador1->getNome().c_str());
         _text = buffer;
@@ -485,7 +496,7 @@ bool Mancala::_validation(CadastroJogadores& cadastro) {
 void Mancala::run(CadastroJogadores& cadastro) {
     if (_validation(cadastro)) {
         _initialize();
-        _run_loop();
+        _run_loop(cadastro);
         _shutdown();
     }
 }

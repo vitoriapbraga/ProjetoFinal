@@ -124,9 +124,11 @@ stringstream CadastroJogadores::listarJogadores(char criterio) const {
 
         auto REVERSI = jogador.getEstatisticas("REVERSI");
         auto LIG4 = jogador.getEstatisticas("LIG4");
+        auto MANCALA = jogador.getEstatisticas("MANCALA");
         
         listaDeJogadores << "\t  LIG4  - V: " << get<0>(LIG4) << " D: " << get<1>(LIG4) << " E: " << get<2>(LIG4) << "\n" << endl;
         listaDeJogadores << "\tREVERSI - V: " << get<0>(REVERSI) << " D: " << get<1>(REVERSI) << " E: " << get<2>(REVERSI) << "\n" << endl;
+        listaDeJogadores << "\tMANCALA - V: " << get<0>(MANCALA) << " D: " << get<1>(MANCALA) << " E: " << get<2>(MANCALA) << "\n" << endl;
     }
     return listaDeJogadores;
 }

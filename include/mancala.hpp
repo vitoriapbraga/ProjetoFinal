@@ -7,6 +7,7 @@
 #include "stdlib.h"
 #include  "settings.hpp"
 #include "CadastroJogadores.hpp"
+#include "Resultados.hpp"
 #include <vector>
 
 
@@ -33,7 +34,7 @@ public:
     bool end_game();
 
     // Atualiza o vencedor com base no estado do jogo
-    void get_winner();
+    void get_winner(CadastroJogadores& cadastro);
 
     // Imprime o estado atual do jogo
     void print_state();
@@ -56,7 +57,7 @@ private:
 
     void _process_input();
 
-    void _update_game();
+    void _update_game(CadastroJogadores& cadastro);
 
     void _draw_game();
 
@@ -71,7 +72,7 @@ private:
     void _reset_game();
 
         // roda o jogo
-    void _run_loop();
+    void _run_loop(CadastroJogadores& cadastro);
 
     void _shutdown();
 
