@@ -4,6 +4,12 @@
 #include "Tabuleiro.h"
 #include "CadastroJogadores.hpp"
 
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+
 class Jogo {
 private:
     JogadorLig4* jogador1;

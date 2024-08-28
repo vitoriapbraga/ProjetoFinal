@@ -5,6 +5,12 @@
 #include "Jogador.hpp"
 #include "Tabuleiro.h"
 
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+
 class JogadorLig4 : public Jogador {
 protected:
     char simbolo;

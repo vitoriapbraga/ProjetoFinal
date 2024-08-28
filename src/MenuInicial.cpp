@@ -3,6 +3,12 @@
 #include "MenuJogos.hpp"
 #include <sstream>
 
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+
 void MenuInicial::initVariables() {
     this->window = nullptr;
     this->_jogadores = nullptr;

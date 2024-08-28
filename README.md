@@ -31,6 +31,13 @@ O repositório está organizado da seguinte forma:
 ## Mancala
 As regras do jogo estão no PDF, ou então podem ser acessadas no site: https://brainking.com/pt/GameRules?tp=103
 
+# Othello/Reversi
+Um Jogo Simples de Othello  
+Este jogo pode ser jogado contra a CPU.  
+No entanto, a CPU faz movimentos completamente aleatórios.  
+Portanto, seus movimentos geralmente não são bem feitos.  
+Os jogos podem ser salvos e carregados a partir de arquivos.
+
 
 ## Observações
 

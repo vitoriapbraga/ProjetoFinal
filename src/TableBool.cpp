@@ -1,5 +1,7 @@
 #include "Table.hpp"
 
+
+
 /**
 Verifica se um lado possui alguma peça para virar, algum movimento legal.
  

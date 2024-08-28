@@ -1,6 +1,11 @@
 #include "MenuJogos.hpp"
 #include <sstream>
 
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 void MenuJogos::initVariables() {
     this->window = nullptr;
     this->endMenu = false;

@@ -5,6 +5,7 @@ INCLUDE_DIR = include
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
+LDFLAGS = -L$(SFML_DIR)/lib -lsfml-system -lsfml-window -lsfml-graphics
 
 # Detectar o sistema operacional
 ifeq ($(OS),Windows_NT)

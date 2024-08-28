@@ -5,6 +5,12 @@
 #include "Tabuleiro.h"
 #include <string>
 
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+
 class JogadorIA : public JogadorLig4 {
 public:
     JogadorIA(const std::string& nome, char simbolo);
