@@ -129,5 +129,5 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 ifeq ($(UNAME_S),Windows)
-	del /Q $(OBJ_DIR)\*.o $(BIN_DIR)\main.exe
+	rm -f $(OBJ_DIR)/*.o $(BIN_DIR)/main
 endif
